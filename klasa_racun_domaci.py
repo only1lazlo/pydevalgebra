@@ -1,4 +1,4 @@
-from curses import nocbreak
+import datetime
 
 
 class Stavka:
@@ -74,6 +74,22 @@ class Racun:
         for stavka in self.stavke:
             self.ukupan_iznos += stavka.iznos()
 
+    def dodaj_stavke(self):
+        """
+    objekt koji smo kreairali tako da smo instancirali klasu Racun
+    ovo je metoda
+        """
+        while True:
+            proizvod = input("Unesi ime proizvoda: ")
+            cijena = float(input("Unesi cijenu proizvoda: "))
+            kolicina = float(input("Unesi kolicinu proizvoda: "))
+            
+            stavka_2 = Stavka(proizvod, cijena, kolicina)
+            self.dodavanje_stavki(stavka_2)
+            izlaz = input("Završen unos stavki? Da/Ne ")
+            if izlaz == "Da":
+                break
+
     #ZADATAK: napisati metodu u klasi Račun za dodavanje stavke
     #pretpostavke: stavka se sastoji od imena proizvoda i cijene
     #stavku spremiti u listu stavki (self.stavke) kao što smo to radili u prethodnom primjeru
@@ -99,24 +115,28 @@ stavka = Stavka("Mlijeko", 1.75, 2)
 #racun.ispis_racuna()
 
 racun_2 = Racun(2, '04.01.2023.')
+
 def dodaj_stavke(racun):
-    stavka_2 = None
+    """
+    racun je tipa Racun, objekt koji smo kreairali tako da smo instancirali klasu Racun
+    """
     while True:
         proizvod = input("Unesi ime proizvoda: ")
         cijena = float(input("Unesi cijenu proizvoda: "))
         kolicina = float(input("Unesi kolicinu proizvoda: "))
+        
         stavka_2 = Stavka(proizvod, cijena, kolicina)
         racun.dodavanje_stavki(stavka_2)
         izlaz = input("Završen unos stavki? Da/Ne ")
         if izlaz == "Da":
             break
-    return racun
+
 #racun_2.dodavanje_stavki(stavka)
 #racun_2 = dodaj_stavke(racun_2)
 #racun_2.ispis_racuna()
 
 
-varijabla_broj_racuna = []
+""" varijabla_broj_racuna = []
 lista_racuna = []
 def izdaj_racun():
     broj = 0
@@ -134,8 +154,26 @@ while True:
     izbor = input("Dosta racuna? Da/Ne")
     
     if izbor == "Da":
-        break
+        break """
 
+broj_racuna = 1
+lista_racuna = []
+
+while True:
+    izlaz = input("Završen unos Računa? Da/Ne ")
+    if izlaz == "Da":
+        break
+    datum = datetime.date.today()
+    racun = Racun(broj_racuna, datum.strftime("%d.%m.%Y"))
+    broj_racuna += 1
+    racun.dodaj_stavke()
+    lista_racuna.append(racun)
+
+print("Gotov unos")
+print("#"*20)
+
+for racun in lista_racuna:
+    racun.ispis_racuna()
 
 
 #ZADATAK:
