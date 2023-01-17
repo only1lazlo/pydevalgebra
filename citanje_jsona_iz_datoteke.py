@@ -11,7 +11,6 @@ with open(ime_datoteke, "r") as datoteka_koju_citamo:
         print(linija.rstrip())
         dict_linija = json.loads(linija)                #load strings
         print(dict_linija['jezici'])            #printaj samo ključ jezici
-        #za svaki ključ u dict_linija ispišite vrijednost u svojoj liniji
-        #print(dict_linija.values(), sep ='\n')
-        for i in linija:
-         print(dict_linija["i"])
+        
+        for i in dict_linija:               #printa vrijednosti iz ključeva
+            print(dict_linija[i])
