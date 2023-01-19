@@ -1,0 +1,23 @@
+import json
+import os
+
+
+
+class Domaci:
+
+    def __init__(self, url, ime_datoteke):
+        self.url = url
+        self.ime_datoteke = ime_datoteke
+
+    def dohvati_ili_ispisi(self):
+        if os.path.exists(self.ime_datoteke):
+            with open(self.ime_datoteke, "r", encoding="utf-8") as datoteka_koju_citamo:
+                procitani_dict = json.load(datoteka_koju_citamo)
+                print(json.dumps(procitani_dict, indent=4))
+        else:
+            with open(self.ime_datoteke, "w", encoding="utf-8") as datoteka_u_koju_pisemo:
+                json.dump(lista_dictova[2], datoteka_u_koju_pisemo, indent=4)
+
+domaci = Domaci(URL, "post_s_weba.json")
+
+domaci.dohvati_ili_ispisi()
